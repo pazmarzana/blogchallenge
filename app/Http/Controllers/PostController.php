@@ -48,7 +48,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if (!$post) {
-            return (["error" => "404", "mensaje" => "No existe un post con dicho indice"]);
+            return (["error" => "404", "message" => "No existe un post con dicho indice"]);
         } else {
             return $post;
         }
@@ -86,5 +86,15 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function showdetail($id)
+    {
+        $post = Post::find($id);
+        if (!$post) {
+            return (["error" => "404", "message" => "No existe un post con dicho indice"]);
+        } else {
+            return view('posts.detail', compact('post'));
+        }
     }
 }
