@@ -85,7 +85,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $this->validate($request, [
+            'title' => 'required|min:2|max:30',
+            'body' => 'required|min:2|string',
+            'image' => 'nullable',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+        $post->update($validatedData);
+
+        return redirect()->route('showdetail', ['id' => $post->id]);
     }
 
     /**
