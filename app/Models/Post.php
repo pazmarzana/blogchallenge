@@ -20,4 +20,9 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function path()
+    {
+        return route('showdetail', $this);
+    }
 }
