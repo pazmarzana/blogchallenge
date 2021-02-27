@@ -72,7 +72,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::select('id', 'name')->orderBy('name', 'ASC')->get();
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
