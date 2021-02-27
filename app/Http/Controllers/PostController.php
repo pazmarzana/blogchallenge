@@ -40,7 +40,7 @@ class PostController extends Controller
         $validatedData = $this->validatePost($request);
         $post = Post::create($validatedData);
 
-        return redirect()->route('showdetail', ['id' => $post->id]);
+        return redirect($post->path());
     }
 
     /**
@@ -82,8 +82,7 @@ class PostController extends Controller
     {
         $validatedData = $this->validatePost($request);
         $post->update($validatedData);
-
-        return redirect()->route('showdetail', ['id' => $post->id]);
+        return redirect($post->path());
     }
 
     /**
