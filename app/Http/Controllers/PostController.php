@@ -94,7 +94,7 @@ class PostController extends Controller
             return (["error" => "404", "mensaje" => "No existe un post con dicho indice"]);
         } else {
             $post->delete();
-            return redirect(route('posts.index'));
+            return redirect(route('home'));
         }
     }
 
