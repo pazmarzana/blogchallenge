@@ -12,7 +12,7 @@
                     <input type="text" name="title" minlength="2" maxlength="30" class="form-control @error('title')
                     border-danger @enderror" value="{{old('title') ? old('title') : $post->title}}" required>
                     @error('title')
-                    <p class="text-danger">{{$errors->first('title')}}</p>
+                    <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
                 <div class="form-group m-4">
@@ -20,7 +20,7 @@
                     <input type="text" name="body" minlength="2" maxlength="300000" class="form-control @error('body')
                     border-danger @enderror" value="{{old('body') ? old('body') : $post->body}}" required>
                     @error('body')
-                    <p class="text-danger">{{$errors->first('body')}}</p>
+                    <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
                 {{-- <div class="form-group m-4">
@@ -28,7 +28,7 @@
                     <input type="text" name="image" minlength="2" maxlength="3000" class="form-control @error('image')
                     border-danger @enderror" value="{{old('image') ? old('image') : $post->image}}" >
                     @error('image')
-                    <p class="text-danger">{{$errors->first('image')}}</p>
+                    <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div> --}}
                 <div class="form-group m-4">
