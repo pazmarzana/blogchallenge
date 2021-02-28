@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::select('id', 'title', 'image', 'category_id', 'created_at')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+        $posts = Post::select('id', 'title', 'image', 'category_id', 'created_at')->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->get();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -49,14 +50,18 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    // public function show($id)
+    // {
+    //     $post = Post::find($id);
+    //     if (!$post) {
+    //         return (["error" => "404", "message" => "No existe un post con dicho indice"]);
+    //     } else {
+    //         return $post;
+    //     }
+    // }
+    public function show(Post $post)
     {
-        $post = Post::find($id);
-        if (!$post) {
-            return (["error" => "404", "message" => "No existe un post con dicho indice"]);
-        } else {
-            return $post;
-        }
+        return view('posts.detail', compact('post'));
     }
 
     /**
@@ -102,16 +107,6 @@ class PostController extends Controller
         }
     }
 
-    public function showdetail($id)
-    {
-        //$post = $this->show($id); //posibilidad para utilizar la funcion show del back
-        $post = Post::find($id);
-        if (!$post) {
-            return (["error" => "404", "message" => "No existe un post con dicho indice"]);
-        } else {
-            return view('posts.detail', compact('post'));
-        }
-    }
     protected function validatePost($request)
     {
         return $request->validate([
