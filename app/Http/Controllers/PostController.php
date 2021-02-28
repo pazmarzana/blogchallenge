@@ -50,15 +50,6 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     $post = Post::find($id);
-    //     if (!$post) {
-    //         return (["error" => "404", "message" => "No existe un post con dicho indice"]);
-    //     } else {
-    //         return $post;
-    //     }
-    // }
     public function show(Post $post)
     {
         return view('posts.detail', compact('post'));
