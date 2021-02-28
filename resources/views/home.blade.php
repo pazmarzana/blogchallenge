@@ -11,7 +11,8 @@
                         {{ $post->title}}
                     </div>
                     <div class="d-flex nowrap">
-                        <a href="{{ route('showdetail',['id'=> $post->id]) }}" class="btn btn-default btn-sm m-1 text-white"><i class="far fa-eye text-secondary"></i></a>
+                        {{-- <a href="{{ route('showdetail',['id'=> $post->id]) }}" class="btn btn-default btn-sm m-1 text-white"><i class="far fa-eye text-secondary"></i></a> --}}
+                        <a href="{{ route('posts.show',['post'=> $post]) }}" class="btn btn-default btn-sm m-1 text-white"><i class="far fa-eye text-secondary"></i></a>
                         <a href="{{ route('posts.edit',['post' => $post]) }}"class="btn btn-default btn-sm m-1"><i class="fas fa-pencil-alt text-secondary"></i></a>
                         <form method="POST" action="{{ route('posts.destroy',['post' => $post]) }}"  class="d-inline-block">
                             @method('DELETE')
