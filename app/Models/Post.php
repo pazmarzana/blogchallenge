@@ -23,6 +23,6 @@ class Post extends Model
 
     public function path()
     {
-        return route('showdetail', $this);
+        return route('posts.show', $this);
     }
 }
