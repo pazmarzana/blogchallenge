@@ -35,8 +35,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <a class="p-2" href="{{ route('home') }}">Home</a>
-                            <a class="p-2" href="{{ route('posts.create') }}">Create new Post</a>
+                            <a class="nav-item nav-link {{ Request::path() === 'home' ? 'active' : ''}}" href="{{ route('home') }}">Home</a>
+                            <a class="nav-item nav-link {{ Request::path() === 'posts/create' ? 'active' : ''}}" href="{{ route('posts.create') }}">Create new Post</a>
                         @endauth
                     </ul>
 
