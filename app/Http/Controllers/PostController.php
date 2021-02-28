@@ -87,15 +87,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::find($id);
-        if (!$post) {
-            return (["error" => "404", "mensaje" => "No existe un post con dicho indice"]);
-        } else {
-            $post->delete();
-            return redirect(route('home'));
-        }
+        $post->delete();
+        return redirect(route('home'));
     }
 
     protected function validatePost($request)
