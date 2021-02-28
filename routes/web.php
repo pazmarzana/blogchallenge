@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Auth::routes();
+
 Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/posts', 'App\Http\Controllers\PostController');
-
-// Route::get('/posts/detail/{id}', [App\Http\Controllers\PostController::class, 'showdetail'])->name('showdetail');
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::resource('/posts', 'App\Http\Controllers\PostController');
+    }
+);
