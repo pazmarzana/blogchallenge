@@ -104,6 +104,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            $this->deleteImage($post);
+        }
         $post->delete();
         return redirect(route('home'));
     }
@@ -122,5 +125,14 @@ class PostController extends Controller
     {
         $file = Storage::disk('images')->get($post->image);
         return response($file, 200);
+    }
+
+    public function deleteImage(Post $post)
+    {
+        if (Storage::disk('images')->delete($post->image)) {
+            return response('El archivo se ha borrado con exito', 200);
+        } else {
+            return response('File does not exist', 404);
+        }
     }
 }
