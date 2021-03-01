@@ -85,7 +85,14 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $this->validatePost($request);
-        $post->update($validatedData);
+        $imageAux = $request->image;
+        if ($imageAux) {
+            $image_path = time() . $imageAux->getClientOriginalName();
+            \Storage::disk('images')->put($image_path, \File::get($imageAux));
+        }
+        $data = array_diff_key($validatedData, array_flip(["image"]));
+        $data["image"] = $image_path;
+        $post->update($data);
         return redirect($post->path());
     }
 
