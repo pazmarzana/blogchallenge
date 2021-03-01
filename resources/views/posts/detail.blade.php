@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(Storage::disk('images')->has($post->image))
+                <img src="{{ route('image',['post'=> $post]) }}" alt="{{ $post->image }}"/>
+            @endif
             <div class="pl-1 m-4"><h2>{{ $post->title}}</h2></div>
             <div class="card mt-2">
                 <div class="card-body">
