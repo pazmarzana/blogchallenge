@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -39,7 +40,14 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $this->validatePost($request);
-        $post = Post::create($validatedData);
+        $imageAux = $request->image;
+        if ($imageAux) {
+            $image_path = time() . $imageAux->getClientOriginalName();
+            \Storage::disk('images')->put($image_path, \File::get($imageAux));
+        }
+        $data = array_diff_key($validatedData, array_flip(["image"]));
+        $data["image"] = $image_path;
+        $post = Post::create($data);
 
         return redirect($post->path());
     }
@@ -98,7 +106,7 @@ class PostController extends Controller
         return $request->validate([
             'title' => 'required|min:2|max:30',
             'body' => 'required|min:2|string',
-            'image' => 'nullable',
+            'image' => 'file|mimes:jpg,bmp,png',
             'category_id' => 'required|exists:categories,id',
         ]);
     }
