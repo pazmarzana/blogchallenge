@@ -24,3 +24,5 @@ Route::group(
         Route::resource('/posts', 'App\Http\Controllers\PostController');
     }
 );
+
+Route::get('/image/{post}', [App\Http\Controllers\PostController::class, 'getImage'])->name('image');
