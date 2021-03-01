@@ -40,13 +40,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $this->validatePost($request);
+        $data = array_diff_key($validatedData, array_flip(["image"]));
         $imageAux = $request->image;
         if ($imageAux) {
             $image_path = time() . $imageAux->getClientOriginalName();
             \Storage::disk('images')->put($image_path, \File::get($imageAux));
+            $data["image"] = $image_path;
         }
-        $data = array_diff_key($validatedData, array_flip(["image"]));
-        $data["image"] = $image_path;
         $post = Post::create($data);
 
         return redirect($post->path());
@@ -85,13 +85,13 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $this->validatePost($request);
+        $data = array_diff_key($validatedData, array_flip(["image"]));
         $imageAux = $request->image;
         if ($imageAux) {
             $image_path = time() . $imageAux->getClientOriginalName();
             \Storage::disk('images')->put($image_path, \File::get($imageAux));
+            $data["image"] = $image_path;
         }
-        $data = array_diff_key($validatedData, array_flip(["image"]));
-        $data["image"] = $image_path;
         $post->update($data);
         return redirect($post->path());
     }
