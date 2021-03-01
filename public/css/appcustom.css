@@ -1,0 +1,9 @@
+.imageBig {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.details{
+    font-style: italic;
+    font-size: smaller;
+}
