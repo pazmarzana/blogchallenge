@@ -23,14 +23,14 @@
                     <p class="text-danger">{{$message}}</p>
                     @enderror
                 </div>
-                {{-- <div class="form-group m-4">
+                <div class="form-group m-4">
                     <label for="image">Imagen</label>
-                    <input type="text" name="image" minlength="2" maxlength="3000" class="form-control @error('image')
+                    <input type="file" name="image" class="form-control @error('image')
                     border-danger @enderror" value="{{old('image') ? old('image') : $post->image}}" >
                     @error('image')
                     <p class="text-danger">{{$message}}</p>
                     @enderror
-                </div> --}}
+                </div>
                 <div class="form-group m-4">
                     <label for="category_id">Categoria</label>
                     <select type="text" name="category_id" class="form-control" >
