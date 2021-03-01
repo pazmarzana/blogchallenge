@@ -117,4 +117,10 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
     }
+
+    public function getImage(Post $post)
+    {
+        $file = Storage::disk('images')->get($post->image);
+        return response($file, 200);
+    }
 }
