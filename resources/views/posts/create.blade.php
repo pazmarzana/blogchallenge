@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <div class="form-group m-4">
-                    <label for="image">Imagen</label>
+                    <label for="image" class="form-label">Imagen</label>
                     <input type="file" name="image" class="form-control @error('image')
                     border-danger @enderror" value="{{old('image')}}" >
                     @error('image')
